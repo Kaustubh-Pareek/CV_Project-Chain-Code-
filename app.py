@@ -2,16 +2,15 @@ import os
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 from werkzeug.utils import secure_filename
 from utils import allowed_file, get_file_extension
-#from static.pipeline import labeller
+from static.chaincode import chain_code
+import cv2 as cv
 
-UPLOAD_FOLDER = './images'
-
-
+UPLOAD_FOLDER = os.path.join('static', 'images')
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['UPLOAD_FOLDER'] = os.path.join('static', 'images')
 
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
+
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 
 
@@ -23,13 +22,17 @@ def index():
             filename = secure_filename(file.filename)
             path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(path)
-
+            
             output_filename = f'processed_image.{get_file_extension(file)}'
             output_path = os.path.join(app.config['UPLOAD_FOLDER'], output_filename)
-            #chain_code = labeller(path, output_path)
+            chaincode, processed_img, _ = chain_code(path)
+            # if 0 in chaincode:
+            #     chaincode.remove(0)
+            cv.imwrite(output_path, processed_img)
 
-            return render_template("output.html", filename=f'processed_image.{get_file_extension(file)}')
+            return render_template("output.html", filename=output_filename, chaincode=chaincode)
     return render_template("index.html")
+
 
 @app.route('/output/<filename>')
 def output(filename):

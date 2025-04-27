@@ -57,9 +57,9 @@ def chain_code(img_path, connectivity=8):
         pixel_found = False
         for i in range(len(directions)):
             direction_index = (curr_direction + i) % len(directions)  # circular movement through directions
-            row, col_ = directions[direction_index]
+            row, col = directions[direction_index]
             neighbor_pixel_row = curr_pixel[0] + row
-            neighbor_pixel_col = curr_pixel[1] + col_
+            neighbor_pixel_col = curr_pixel[1] + col
 
             # add the neighbour pixel if it is white i.e. part of the boundary
             if bordered_img[neighbor_pixel_row, neighbor_pixel_col] == 255:

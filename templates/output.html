@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Processed Image:</h2>
+    <img src="{{ url_for('output', filename=filename) }}" alt="Labeled Image" width="300"><br><br>
+
+    <h2>Chain Code:</h2>
+    <div class="chaincode">
+        <code>{{ chaincode }}</code>
+    </div>
+
+    <br>
+    <a href="{{ url_for('index') }}">Upload Another Image</a>
+{% endblock %}

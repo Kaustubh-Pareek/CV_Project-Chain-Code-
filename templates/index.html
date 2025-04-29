@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form method="POST" enctype="multipart/form-data">
+        <label>Select an Image:</label><br>
+        <input type="file" name="file" accept="image/*" id="img-upload" required><br><br>
+        <div id="img-info">
+            <p id="img-name"></p>
+            <p id="img-size"></p>
+        </div>
+
+        <div id="img-preview" style="margin-top: 20px;">
+            <h3>Uploaded Image:</h3>
+            <img id="upload-img" src="#" alt="Image" style="display: none; max-width: 300px;">
+        </div>
+        <button type="submit">Upload</button>
+    </form>
+{% endblock %}
+
+
+
+
+
+

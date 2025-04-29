@@ -71,16 +71,16 @@ button:hover {
 
 .chaincode {
     display: inline-block;
-    background-color: #ffffff; /* white for strong contrast */
+    background-color: #ffffff; 
     padding: 16px 28px;
     border-radius: 16px;
     font-size: 20px;
     font-family: 'Courier New', Courier, monospace;
-    color: #7c3aed;  /* vibrant purple */
-    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3); /* deeper purple glow */
+    color: #7c3aed; 
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3); 
     margin-bottom: 30px;
     letter-spacing: 1.5px;
-    border: 2px solid #7c3aed; /* matching vibrant border */
+    border: 2px solid #7c3aed; 
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 

@@ -20,3 +20,6 @@ This project implements a boundary tracing algorithm using Chain Codes. Given a 
 
 ```bash
 pip install opencv-python numpy matplotlib
+
+
+

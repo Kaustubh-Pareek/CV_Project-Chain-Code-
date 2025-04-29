@@ -48,7 +48,7 @@ def chain_code(img_path):
     while True:
         pixel_found = False
         for i in range(len(eight_way_directions)):
-            direction_index = (curr_direction + i) % len(eight_way_directions)  # circular movement through 8_way_8_way_directions
+            direction_index = (curr_direction + i) % len(eight_way_directions)  # circular movement through 8_way_directions
             row, col = eight_way_directions[direction_index]
             neighbor_pixel_row = curr_pixel[0] + row
             neighbor_pixel_col = curr_pixel[1] + col
@@ -58,7 +58,7 @@ def chain_code(img_path):
                 curr_pixel = (neighbor_pixel_row, neighbor_pixel_col)
                 border_points.append(curr_pixel)
 
-                # Updating the direction - 2 step backwards
+                # Updating the direction - 2 steps backwards
                 curr_direction = (direction_index + len(eight_way_directions) - 2) % len(eight_way_directions)
 
                 # adding to the cc (chain code) if direction is changed
@@ -68,7 +68,7 @@ def chain_code(img_path):
                 pixel_found = True
                 break  # break the for loop when next boundary pixel is found
 
-        # breaking the while loop if no new white pixel is found or we reach at the start pixel again.
+        # breaking the while loop if no new white pixel is found or we reach the start pixel again.
         if not pixel_found or curr_pixel == start_pixel:
             break
 
@@ -76,7 +76,7 @@ def chain_code(img_path):
     processed_img = cv.cvtColor(bin_img, cv.COLOR_GRAY2BGR)
     for point in border_points:
         x = point[1] - 1  
-        y = point[0] - 1  # row, adjust for border i.e. -1 for converting the value of the pixel back to the to original value
+        y = point[0] - 1  # row, adjust for border i.e. -1 for converting the value of the pixel back to the original value
         cv.circle(processed_img, (x, y), 1, (0, 0, 255), -1)  # making the red point on the boundary/border pixel
 
     return cc, processed_img

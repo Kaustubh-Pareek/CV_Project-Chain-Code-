@@ -4,9 +4,17 @@
     <h2>Processed Image:</h2>
     <img src="{{ url_for('output', filename=filename) }}" alt="Labeled Image" width="300"><br><br>
 
-    <h2>Chain Code:</h2>
+    <h3>Code:</h3>
     <div class="chaincode">
         <code>{{ chaincode }}</code>
+    </div>
+    <h3>First Order:</h3>
+    <div class="chaincode">
+        <code>{{ cfd }}</code>
+    </div>
+    <h3>Final Code:</h3>
+    <div class="chaincode">
+        <code>{{ normalized_cfd }}</code>
     </div>
 
     <br>

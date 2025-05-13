@@ -23,10 +23,10 @@ def index():
 
             output_filename = f'processed_image.{get_file_extension(file)}'
             output_path = os.path.join(app.config['UPLOAD_FOLDER'], output_filename)
-            chaincode, processed_img = chain_code(path) 
+            chaincode, cfd, normalized_cfd, processed_img = chain_code(path) 
             cv.imwrite(output_path, processed_img)
 
-            return render_template("output.html", filename=output_filename, chaincode=chaincode)
+            return render_template("output.html", filename=output_filename, chaincode=chaincode, cfd=cfd, normalized_cfd=normalized_cfd)
     return render_template('index.html')
 
 @app.route('/output/<filename>')

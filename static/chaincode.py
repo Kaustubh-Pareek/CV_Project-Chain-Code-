@@ -78,9 +78,24 @@ def chain_code(img_path):
         x = point[1] - 1  
         y = point[0] - 1  # row, adjust for border i.e. -1 for converting the value of the pixel back to the original value
         cv.circle(processed_img, (x, y), 1, (0, 0, 255), -1)  # making the red point on the boundary/border pixel
+        
+        
+    # calculate circular first difference (first-order derivative)
+    cfd = [(cc[i] - cc[i - 1]) % 8 for i in range(len(cc))]
 
-    return cc, processed_img
+    # normalize the circular first difference
+    min_value = min(cfd)
+    min_index = cfd.index(min_value)
 
+
+    normalized_cfd = cfd[min_index:] + cfd[:min_index]
+
+    cc = ' '.join(str(val) for val in cc)
+    cfd = ' '.join(str(val) for val in cfd)
+    normalized_cfd_string = ' '.join(str(val) for val in normalized_cfd)
+    
+
+    return cc, cfd, normalized_cfd_string, processed_img
 
 
 
